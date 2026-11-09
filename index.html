@@ -1,10 +1,126 @@
-   <!DOCTYPE html>
-   <html>
-   <head>
-       <title>موقعي الأول</title>
-   </head>
-   <body>
-       <h1>مرحباً بك في موقعي الإلكتروني!</h1>
-       <p>هذا هو أول موقع لي تم رفعه عبر GitHub Pages.</p>
-   </body>
-   </html>
+cd ~/lucifer-site
+cat > index.html <<'EOF'
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>LUCIFER SECURITY LAB</title>
+
+<style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 20px;
+    background: #080808;
+    color: white;
+    font-family: Arial, sans-serif;
+    text-align: center;
+}
+
+h1 {
+    color: #ff1744;
+    margin-top: 30px;
+}
+
+.status {
+    color: #00ff91;
+}
+
+.card {
+    max-width: 520px;
+    margin: 18px auto;
+    padding: 20px;
+    background: #191919;
+    border-left: 4px solid #bd0035;
+    border-radius: 12px;
+}
+
+button {
+    width: 100%;
+    padding: 15px;
+    background: #bd0035;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 17px;
+    cursor: pointer;
+}
+
+button:active {
+    background: #ff1744;
+}
+
+#out {
+    max-width: 520px;
+    margin: 20px auto;
+    padding: 20px;
+    background: #222;
+    color: #00ff91;
+    border-radius: 10px;
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+}
+</style>
+</head>
+
+<body>
+
+<h1>LUCIFER SECURITY LAB</h1>
+<p class="status">● SYSTEM ONLINE</p>
+
+<div class="card">
+    <h3>SYSTEM INFORMATION</h3>
+    <button id="system">OPEN</button>
+</div>
+
+<div class="card">
+    <h3>NETWORK DIAGNOSTICS</h3>
+    <button id="network">SCAN</button>
+</div>
+
+<div class="card">
+    <h3>SECURITY CHECK</h3>
+    <button id="security">START</button>
+</div>
+
+<div id="out">WAITING FOR COMMAND...</div>
+
+<script>
+const output = document.getElementById("out");
+
+function show(message) {
+    output.textContent = message;
+}
+
+document.getElementById("system").addEventListener("click", function() {
+    show(
+        "SYSTEM INFORMATION\n" +
+        "Browser: " + navigator.userAgent + "\n" +
+        "Language: " + navigator.language + "\n" +
+        "Screen: " + screen.width + " x " + screen.height
+    );
+});
+
+document.getElementById("network").addEventListener("click", function() {
+    show(
+        "NETWORK STATUS: " +
+        (navigator.onLine ? "CONNECTED" : "OFFLINE") +
+        "\nBrowser connectivity check."
+    );
+});
+
+document.getElementById("security").addEventListener("click", function() {
+    show(
+        "SECURITY CHECK: COMPLETE\n" +
+        "Basic local page check finished.\n" +
+        "No external device was scanned."
+    );
+});
+</script>
+
+</body>
+</html>
